@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚽ 2026 World Cup Office Pool</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: linear-gradient(135deg, #0f4c3a, #1a3c2e); color: white; }
+    header { background: #0a2f24; padding: 20px; text-align: center; }
+    h1 { margin: 0; font-size: 2.5em; }
+    .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.2); }
+    th { background: #1a3c2e; }
+    .leaderboard tr:hover { background: rgba(255,255,255,0.15); }
+    .card { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin: 15px 0; }
+    button { background: #00c853; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+    button:hover { background: #00b140; }
+    .flag { font-size: 1.8em; margin-right: 10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>⚽ 2026 FIFA World Cup Office Pool</h1>
+    <p>Cheer for Your Squad • 24 Players • Updated Live</p>
+  </header>
+
+  <div class="container">
+    <!-- Leaderboard -->
+    <div class="card">
+      <h2>🏆 Current Leaderboard</h2>
+      <table id="leaderboard">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Teams</th>
+            <th>Points</th>
+            <th>Knockout Stage</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body"></tbody>
+      </table>
+    </div>
+
+    <!-- All Assignments -->
+    <div class="card">
+      <h2>📋 All Team Assignments</h2>
+      <table id="assignments">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>Team 1</th>
+            <th>Team 2</th>
+          </tr>
+        </thead>
+        <tbody id="assignments-body"></tbody>
+      </table>
+    </div>
+
+    <!-- Score Updater -->
+    <div class="card">
+      <h2>🔄 Update Scores (Admin)</h2>
+      <p>Select a player and add points for wins, draws, or stage advancement.</p>
+      
+      <select id="player-select" style="padding:10px; margin-right:10px;"></select>
+      <input type="number" id="points" placeholder="Points to add" style="padding:10px; width:120px;">
+      <button onclick="addPoints()">Add Points</button>
+      <button onclick="resetPool()" style="background:#f44336; margin-left:10px;">Reset Pool</button>
+    </div>
+  </div>
+
+  <script>
+    // Team assignments data
+    const assignments = [
+      { id: 1, player: "Player 1", team1: "🇫🇷 France", team2: "🇳🇿 New Zealand" },
+      { id: 2, player: "Player 2", team1: "🇪🇸 Spain", team2: "🇭🇹 Haiti" },
+      { id: 3, player: "Player 3", team1: "🇦🇷 Argentina", team2: "🇨🇼 Curaçao" },
+      { id: 4, player: "Player 4", team1: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England", team2: "🇯🇴 Jordan" },
+      { id: 5, player: "Player 5", team1: "🇵🇹 Portugal", team2: "🇨🇻 Cape Verde" },
+      { id: 6, player: "Player 6", team1: "🇧🇷 Brazil", team2: "🇬🇭 Ghana" },
+      { id: 7, player: "Player 7", team1: "🇳🇱 Netherlands", team2: "🇿🇦 South Africa" },
+      { id: 8, player: "Player 8", team1: "🇲🇦 Morocco", team2: "🇺🇿 Uzbekistan" },
+      { id: 9, player: "Player 9", team1: "🇧🇪 Belgium", team2: "🇸🇦 Saudi Arabia" },
+      { id: 10, player: "Player 10", team1: "🇩🇪 Germany", team2: "🇶🇦 Qatar" },
+      { id: 11, player: "Player 11", team1: "🇭🇷 Croatia", team2: "🇵🇦 Panama" },
+      { id: 12, player: "Player 12", team1: "🇮🇹 Italy", team2: "🇹🇳 Tunisia" },
+      { id: 13, player: "Player 13", team1: "🇨🇴 Colombia", team2: "🇩🇿 Algeria" },
+      { id: 14, player: "Player 14", team1: "🇸🇳 Senegal", team2: "🇪🇬 Egypt" },
+      { id: 15, player: "Player 15", team1: "🇲🇽 Mexico", team2: "🇨🇮 Ivory Coast" },
+      { id: 16, player: "Player 16", team1: "🇺🇸 USA", team2: "🇨🇩 DR Congo" },
+      { id: 17, player: "Player 17", team1: "🇺🇾 Uruguay", team2: "🇳🇴 Norway" },
+      { id: 18, player: "Player 18", team1: "🇯🇵 Japan", team2: "🇦🇹 Austria" },
+      { id: 19, player: "Player 19", team1: "🇨🇭 Switzerland", team2: "🇰🇷 South Korea" },
+      { id: 20, player: "Player 20", team1: "🇩🇰 Denmark", team2: "🇪🇨 Ecuador" },
+      { id: 21, player: "Player 21", team1: "🇮🇷 Iran", team2: "🇦🇺 Australia" },
+      { id: 22, player: "Player 22", team1: "🇹🇷 Turkey", team2: "🇵🇾 Paraguay" },
+      { id: 23, player: "Player 23", team1: "🇸🇪 Sweden", team2: "🇧🇦 Bosnia and Herzegovina" },
+      { id: 24, player: "Player 24", team1: "🇨🇿 Czechia", team2: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland" }
+    ];
+
+    let scores = {};
+
+    // Load from localStorage
+    function loadData() {
+      const savedScores = localStorage.getItem('worldCupPoolScores');
+      if (savedScores) scores = JSON.parse(savedScores);
+      else {
+        assignments.forEach(a => scores[a.id] = { points: 0, knockout: 0 });
+      }
+      renderAll();
+    }
+
+    function saveData() {
+      localStorage.setItem('worldCupPoolScores', JSON.stringify(scores));
+    }
+
+    function renderAll() {
+      renderLeaderboard();
+      renderAssignments();
+      renderPlayerSelect();
+    }
+
+    function renderLeaderboard() {
+      const tbody = document.getElementById('leaderboard-body');
+      tbody.innerHTML = '';
+
+      const sorted = assignments.map(a => ({
+        ...a,
+        points: scores[a.id]?.points || 0,
+        knockout: scores[a.id]?.knockout || 0
+      })).sort((a, b) => b.points - a.points);
+
+      sorted.forEach((item, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong>${index + 1}</strong></td>
+          <td>${item.player}</td>
+          <td>${item.team1} &amp; ${item.team2}</td>
+          <td><strong>${item.points}</strong></td>
+          <td>${item.knockout} teams in KO</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function renderAssignments() {
+      const tbody = document.getElementById('assignments-body');
+      tbody.innerHTML = '';
+      assignments.forEach(a => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${a.player}</td>
+          <td>${a.team1}</td>
+          <td>${a.team2}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function renderPlayerSelect() {
+      const select = document.getElementById('player-select');
+      select.innerHTML = '<option value="">Select Player</option>';
+      assignments.forEach(a => {
+        const opt = document.createElement('option');
+        opt.value = a.id;
+        opt.textContent = `${a.player} (${a.team1} + ${a.team2})`;
+        select.appendChild(opt);
+      });
+    }
+
+    window.addPoints = function() {
+      const playerId = parseInt(document.getElementById('player-select').value);
+      const points = parseInt(document.getElementById('points').value);
+
+      if (!playerId || !points) {
+        alert("Please select a player and enter points");
+        return;
+      }
+
+      if (!scores[playerId]) scores[playerId] = { points: 0, knockout: 0 };
+      scores[playerId].points += points;
+      saveData();
+      renderAll();
+      alert(`Added ${points} points to Player ${playerId}!`);
+    };
+
+    window.resetPool = function() {
+      if (confirm("Reset all scores? This cannot be undone.")) {
+        scores = {};
+        assignments.forEach(a => scores[a.id] = { points: 0, knockout: 0 });
+        saveData();
+        renderAll();
+      }
+    };
+
+    // Initialize
+    loadData();
+  </script>
+</body>
+</html>
