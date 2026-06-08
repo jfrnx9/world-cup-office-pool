@@ -16,14 +16,13 @@
     .card { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin: 15px 0; }
     button { background: #00c853; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
     button:hover { background: #00b140; }
-    .flag { font-size: 1.8em; margin-right: 10px; }
     .rules { line-height: 1.6; }
   </style>
 </head>
 <body>
   <header>
     <h1>⚽ 2026 FIFA World Cup Office Pool</h1>
-    <p>Cheer for Your Squad • Simple Scoring • Updated with Latest FIFA Rankings</p>
+    <p>Cheer for Your Squad • Simple Scoring • Latest FIFA Rankings</p>
   </header>
 
   <div class="container">
@@ -31,7 +30,7 @@
     <div class="card">
       <h2>📜 Scoring Rules</h2>
       <div class="rules">
-        <strong>Very Easy — No Bonuses:</strong><br>
+        <strong>Super Simple — No Bonuses:</strong><br>
         • <strong>+3</strong> = Win in regular or extra time<br>
         • <strong>+2</strong> = Win via penalty shootout<br>
         • <strong>+1</strong> = Draw<br>
@@ -58,7 +57,7 @@
 
     <!-- All Assignments -->
     <div class="card">
-      <h2>📋 All Team Assignments (Latest FIFA Rankings)</h2>
+      <h2>📋 All Team Assignments (Balanced by Latest FIFA Rankings)</h2>
       <table id="assignments">
         <thead>
           <tr>
@@ -74,7 +73,7 @@
     <!-- Score Updater -->
     <div class="card">
       <h2>🔄 Update Scores (Admin / Office)</h2>
-      <select id="player-select" style="padding:10px; margin-right:10px; width:320px;"></select>
+      <select id="player-select" style="padding:10px; margin-right:10px; width:380px;"></select>
       <input type="number" id="points" placeholder="Points to add" style="padding:10px; width:120px;">
       <button onclick="addPoints()">Add Points</button>
       <button onclick="resetPool()" style="background:#f44336; margin-left:10px;">Reset All</button>
@@ -94,19 +93,19 @@
       { id: 9, player: "Player 9", team1: "🇧🇪 Belgium", team2: "🇸🇦 Saudi Arabia" },
       { id: 10, player: "Player 10", team1: "🇩🇪 Germany", team2: "🇶🇦 Qatar" },
       { id: 11, player: "Player 11", team1: "🇭🇷 Croatia", team2: "🇵🇦 Panama" },
-      { id: 12, player: "Player 12", team1: "🇮🇹 Italy", team2: "🇹🇳 Tunisia" },
-      { id: 13, player: "Player 13", team1: "🇨🇴 Colombia", team2: "🇩🇿 Algeria" },
-      { id: 14, player: "Player 14", team1: "🇸🇳 Senegal", team2: "🇪🇬 Egypt" },
-      { id: 15, player: "Player 15", team1: "🇲🇽 Mexico", team2: "🇨🇮 Ivory Coast" },
-      { id: 16, player: "Player 16", team1: "🇺🇸 USA", team2: "🇨🇩 DR Congo" },
-      { id: 17, player: "Player 17", team1: "🇺🇾 Uruguay", team2: "🇳🇴 Norway" },
-      { id: 18, player: "Player 18", team1: "🇯🇵 Japan", team2: "🇦🇹 Austria" },
-      { id: 19, player: "Player 19", team1: "🇨🇭 Switzerland", team2: "🇰🇷 South Korea" },
-      { id: 20, player: "Player 20", team1: "🇩🇰 Denmark", team2: "🇪🇨 Ecuador" },
-      { id: 21, player: "Player 21", team1: "🇮🇷 Iran", team2: "🇦🇺 Australia" },
-      { id: 22, player: "Player 22", team1: "🇹🇷 Turkey", team2: "🇵🇾 Paraguay" },
-      { id: 23, player: "Player 23", team1: "🇸🇪 Sweden", team2: "🇧🇦 Bosnia and Herzegovina" },
-      { id: 24, player: "Player 24", team1: "🇨🇿 Czechia", team2: "🏴󠁧󠁢󠁳󠁣🇹 Scotland" }
+      { id: 12, player: "Player 12", team1: "🇨🇴 Colombia", team2: "🇩🇿 Algeria" },
+      { id: 13, player: "Player 13", team1: "🇸🇳 Senegal", team2: "🇪🇬 Egypt" },
+      { id: 14, player: "Player 14", team1: "🇲🇽 Mexico", team2: "🇨🇮 Ivory Coast" },
+      { id: 15, player: "Player 15", team1: "🇺🇸 USA", team2: "🇨🇩 DR Congo" },
+      { id: 16, player: "Player 16", team1: "🇺🇾 Uruguay", team2: "🇳🇴 Norway" },
+      { id: 17, player: "Player 17", team1: "🇯🇵 Japan", team2: "🇦🇹 Austria" },
+      { id: 18, player: "Player 18", team1: "🇨🇭 Switzerland", team2: "🇰🇷 South Korea" },
+      { id: 19, player: "Player 19", team1: "🇩🇰 Denmark", team2: "🇪🇨 Ecuador" },
+      { id: 20, player: "Player 20", team1: "🇮🇷 Iran", team2: "🇦🇺 Australia" },
+      { id: 21, player: "Player 21", team1: "🇹🇷 Turkey", team2: "🇵🇾 Paraguay" },
+      { id: 22, player: "Player 22", team1: "🇸🇪 Sweden", team2: "🇧🇦 Bosnia and Herzegovina" },
+      { id: 23, player: "Player 23", team1: "🇨🇿 Czechia", team2: "🏴󠁧󠁢󠁳🇨🇹 Scotland" },
+      { id: 24, player: "Player 24", team1: "🇨🇦 Canada", team2: "🇹🇳 Tunisia" }
     ];
 
     let scores = {};
@@ -180,17 +179,18 @@
       scores[id].points += pts;
       saveData();
       renderAll();
-      alert(`Added ${pts} points!`);
+      alert(`Added ${pts} points to ${assignments.find(a => a.id === id).player}!`);
     };
 
     window.resetPool = function() {
-      if (confirm("Reset all scores?")) {
+      if (confirm("Reset all scores? This cannot be undone.")) {
         scores = {};
         saveData();
         renderAll();
       }
     };
 
+    // Initialize
     loadData();
   </script>
 </body>
