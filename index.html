@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚽ 2026 Boras Corp World Cup Office Pool</title>
+  <title>⚽ 2026 World Cup Office Pool</title>
   <style>
     body { font-family: 'Segoe UI', sans-serif; margin: 0; background: linear-gradient(135deg, #0f4c3a, #1a3c2e); color: white; }
     header { background: #0a2f24; padding: 20px; text-align: center; }
@@ -21,7 +21,8 @@
 <body>
   <header>
     <h1>⚽ 2026 FIFA World Cup Office Pool</h1>
-   </header>
+    <p>Cheer for Your Squad • Simple Scoring</p>
+  </header>
 
   <div class="container">
     <!-- Rules -->
@@ -69,7 +70,7 @@
     <!-- Score Updater -->
     <div class="card">
       <h2>🔄 Update Scores</h2>
-      <select id="player-select" style="padding:10px; margin-right:10px; width:420px;"></select>
+      <select id="player-select" style="padding:10px; margin-right:10px; width:460px;"></select>
       <input type="number" id="points" placeholder="Points to add" style="padding:10px; width:130px;">
       <button onclick="addPoints()">Add Points</button>
       <button onclick="resetPool()" style="background:#f44336; margin-left:10px;">Reset All</button>
@@ -85,28 +86,28 @@
       { id: 5, player: "Sean M", teams: "Morocco" },
       { id: 6, player: "Andrew L", teams: "South Korea & DR Congo" },
       { id: 7, player: "Sam W", teams: "USA & Cape Verde" },
-      { id: 8, player: "Justin K", teams: "Portugal" },
-      { id: 9, player: "Ivy D", teams: "Netherlands" },
-      { id: 10, player: "Greg P", teams: "Ecuador & Qatar" },
-      { id: 11, player: "Michael C", teams: "Switzerland & Saudi Arabia" },
-      { id: 12, player: "Tyler B", teams: "Egypt & Czechia" },
-      { id: 13, player: "Ryan L", teams: "Austria & Uzbekistan" },
-      { id: 14, player: "Jake B", teams: "Brazil" },
-      { id: 15, player: "Kyle K", teams: "Uruguay & Bosnia and Herzegovina" },
-      { id: 16, player: "Gloria B", teams: "Senegal & Curacao" },
-      { id: 17, player: "Ryan A", teams: "Mexico & Ghana" },
-      { id: 18, player: "Tony V", teams: "Spain" },
-      { id: 19, player: "Cole V", teams: "Australia & Tunisia" },
-      { id: 20, player: "George L", teams: "Panama & Ivory Coast" },
-      { id: 21, player: "Adam Z", teams: "Turkey & Iraq" },
-      { id: 22, player: "Stacy M", teams: "Germany" },
-      { id: 23, player: "Michael R", teams: "Norway & Sweden" },
-      { id: 24, player: "Ana O", teams: "Argentina" },
-      { id: 25, player: "Daniel L", teams: "France" },
-      { id: 26, player: "Ivan S", teams: "England" },
-      { id: 27, player: "JG", teams: "Iran & South Africa" },
-      { id: 28, player: "Sam F", teams: "Croatia & New Zealand" }
-      { id: 29, player: "Jordan V", teams: "Portugal" }
+      { id: 8, player: "Jordan V", teams: "Portugal" },
+      { id: 9, player: "Justin K", teams: "Netherlands" },
+      { id: 10, player: "Ivy D", teams: "Japan & Jordan" },
+      { id: 11, player: "Greg P", teams: "Ecuador & Qatar" },
+      { id: 12, player: "Michael C", teams: "Switzerland & Saudi Arabia" },
+      { id: 13, player: "Tyler B", teams: "Egypt & Czechia" },
+      { id: 14, player: "Ryan L", teams: "Austria & Uzbekistan" },
+      { id: 15, player: "Jake B", teams: "Brazil" },
+      { id: 16, player: "Kyle K", teams: "Uruguay & Bosnia and Herzegovina" },
+      { id: 17, player: "Gloria B", teams: "Senegal & Curacao" },
+      { id: 18, player: "Ryan A", teams: "Mexico & Ghana" },
+      { id: 19, player: "Tony V", teams: "Spain" },
+      { id: 20, player: "Cole V", teams: "Australia & Tunisia" },
+      { id: 21, player: "George L", teams: "Panama & Ivory Coast" },
+      { id: 22, player: "Adam Z", teams: "Turkey & Iraq" },
+      { id: 23, player: "Stacy M", teams: "Germany" },
+      { id: 24, player: "Michael R", teams: "Norway & Sweden" },
+      { id: 25, player: "Ana O", teams: "Argentina" },
+      { id: 26, player: "Daniel L", teams: "France" },
+      { id: 27, player: "Ivan S", teams: "England" },
+      { id: 28, player: "JG", teams: "Iran & South Africa" },
+      { id: 29, player: "Sam F", teams: "Croatia & New Zealand" }
     ];
 
     let scores = {};
