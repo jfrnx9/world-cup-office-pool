@@ -16,12 +16,12 @@
     .card { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin: 15px 0; }
     button { background: #00c853; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
     button:hover { background: #00b140; }
+    .flag { font-size: 1.4em; margin-right: 8px; }
   </style>
 </head>
 <body>
   <header>
     <h1>⚽ 2026 FIFA World Cup Office Pool</h1>
-    <p>Cheer for Your Squad • Simple Scoring</p>
   </header>
 
   <div class="container">
@@ -79,35 +79,35 @@
 
   <script>
     const assignments = [
-      { id: 1, player: "Ryan M", teams: "Belgium" },
-      { id: 2, player: "Chris M", teams: "Paraguay & Canada" },
-      { id: 3, player: "Jazmin P", teams: "Scotland & Algeria" },
-      { id: 4, player: "Alison M", teams: "Colombia & Haiti" },
-      { id: 5, player: "Sean M", teams: "Morocco" },
-      { id: 6, player: "Andrew L", teams: "South Korea & DR Congo" },
-      { id: 7, player: "Sam W", teams: "USA & Cape Verde" },
-      { id: 8, player: "Jordan V", teams: "Portugal" },
-      { id: 9, player: "Justin K", teams: "Netherlands" },
-      { id: 10, player: "Ivy D", teams: "Japan & Jordan" },
-      { id: 11, player: "Greg P", teams: "Ecuador & Qatar" },
-      { id: 12, player: "Michael C", teams: "Switzerland & Saudi Arabia" },
-      { id: 13, player: "Tyler B", teams: "Egypt & Czechia" },
-      { id: 14, player: "Ryan L", teams: "Austria & Uzbekistan" },
-      { id: 15, player: "Jake B", teams: "Brazil" },
-      { id: 16, player: "Kyle K", teams: "Uruguay & Bosnia and Herzegovina" },
-      { id: 17, player: "Gloria B", teams: "Senegal & Curacao" },
-      { id: 18, player: "Ryan A", teams: "Mexico & Ghana" },
-      { id: 19, player: "Tony V", teams: "Spain" },
-      { id: 20, player: "Cole V", teams: "Australia & Tunisia" },
-      { id: 21, player: "George L", teams: "Panama & Ivory Coast" },
-      { id: 22, player: "Adam Z", teams: "Turkey & Iraq" },
-      { id: 23, player: "Stacy M", teams: "Germany" },
-      { id: 24, player: "Michael R", teams: "Norway & Sweden" },
-      { id: 25, player: "Ana O", teams: "Argentina" },
-      { id: 26, player: "Daniel L", teams: "France" },
-      { id: 27, player: "Ivan S", teams: "England" },
-      { id: 28, player: "JG", teams: "Iran & South Africa" },
-      { id: 29, player: "Sam F", teams: "Croatia & New Zealand" }
+      { id: 1, player: "Ryan M", teams: "🇧🇪 Belgium" },
+      { id: 2, player: "Chris M", teams: "🇵🇾 Paraguay & 🇨🇦 Canada" },
+      { id: 3, player: "Jazzmin P", teams: "🏴󠁧󠁢󠁳🇨🇹 Scotland & 🇩🇿 Algeria" },
+      { id: 4, player: "Alison M", teams: "🇨🇴 Colombia & 🇭🇹 Haiti" },
+      { id: 5, player: "Sean M", teams: "🇲🇦 Morocco" },
+      { id: 6, player: "Andrew L", teams: "🇰🇷 South Korea & 🇨🇩 DR Congo" },
+      { id: 7, player: "Sam W", teams: "🇺🇸 USA & 🇨🇻 Cape Verde" },
+      { id: 8, player: "Jordan V", teams: "🇵🇹 Portugal" },
+      { id: 9, player: "Justin K", teams: "🇳🇱 Netherlands" },
+      { id: 10, player: "Ivy D", teams: "🇯🇵 Japan & 🇯🇴 Jordan" },
+      { id: 11, player: "Greg P", teams: "🇪🇨 Ecuador & 🇶🇦 Qatar" },
+      { id: 12, player: "Michael C", teams: "🇨🇭 Switzerland & 🇸🇦 Saudi Arabia" },
+      { id: 13, player: "Tyler B", teams: "🇪🇬 Egypt & 🇨🇿 Czechia" },
+      { id: 14, player: "Ryan L", teams: "🇦🇹 Austria & 🇺🇿 Uzbekistan" },
+      { id: 15, player: "Jake B", teams: "🇧🇷 Brazil" },
+      { id: 16, player: "Kyle K", teams: "🇺🇾 Uruguay & 🇧🇦 Bosnia and Herzegovina" },
+      { id: 17, player: "Gloria B", teams: "🇸🇳 Senegal & 🇨🇼 Curacao" },
+      { id: 18, player: "Ryan A", teams: "🇲🇽 Mexico & 🇬🇭 Ghana" },
+      { id: 19, player: "Tony V", teams: "🇪🇸 Spain" },
+      { id: 20, player: "Cole V", teams: "🇦🇺 Australia & 🇹🇳 Tunisia" },
+      { id: 21, player: "George L", teams: "🇵🇦 Panama & 🇨🇮 Ivory Coast" },
+      { id: 22, player: "Adam Z", teams: "🇹🇷 Turkey & 🇮🇶 Iraq" },
+      { id: 23, player: "Stacy M", teams: "🇩🇪 Germany" },
+      { id: 24, player: "Michael R", teams: "🇳🇴 Norway & 🇸🇪 Sweden" },
+      { id: 25, player: "Ana O", teams: "🇦🇷 Argentina" },
+      { id: 26, player: "Daniel L", teams: "🇫🇷 France" },
+      { id: 27, player: "Ivan S", teams: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England" },
+      { id: 28, player: "JG", teams: "🇮🇷 Iran & 🇿🇦 South Africa" },
+      { id: 29, player: "Sam F", teams: "🇭🇷 Croatia & 🇳🇿 New Zealand" }
     ];
 
     let scores = {};
