@@ -16,13 +16,12 @@
     .card { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin: 15px 0; }
     button { background: #00c853; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
     button:hover { background: #00b140; }
-    .rules { line-height: 1.6; }
   </style>
 </head>
 <body>
   <header>
     <h1>⚽ 2026 FIFA World Cup Office Pool</h1>
-    <p>Cheer for Your Squad • Simple Scoring • Latest FIFA Rankings</p>
+    <p>Cheer for Your Squad • Simple Scoring</p>
   </header>
 
   <div class="container">
@@ -30,12 +29,11 @@
     <div class="card">
       <h2>📜 Scoring Rules</h2>
       <div class="rules">
-        <strong>Super Simple — No Bonuses:</strong><br>
+        <strong>Super Simple:</strong><br>
         • <strong>+3</strong> = Win in regular or extra time<br>
         • <strong>+2</strong> = Win via penalty shootout<br>
         • <strong>+1</strong> = Draw<br>
-        • <strong>0</strong> = Loss<br><br>
-        Highest total points after the Final wins the pool!
+        • <strong>0</strong> = Loss
       </div>
     </div>
 
@@ -46,7 +44,7 @@
         <thead>
           <tr>
             <th>Rank</th>
-            <th>Player</th>
+            <th>Participant</th>
             <th>Teams</th>
             <th>Points</th>
           </tr>
@@ -55,15 +53,14 @@
       </table>
     </div>
 
-    <!-- All Assignments -->
+    <!-- Assignments -->
     <div class="card">
-      <h2>📋 All Team Assignments (Balanced by Latest FIFA Rankings)</h2>
+      <h2>📋 All Assignments</h2>
       <table id="assignments">
         <thead>
           <tr>
-            <th>Player</th>
-            <th>Team 1 (Stronger)</th>
-            <th>Team 2 (Weaker)</th>
+            <th>Participant</th>
+            <th>Teams</th>
           </tr>
         </thead>
         <tbody id="assignments-body"></tbody>
@@ -72,9 +69,9 @@
 
     <!-- Score Updater -->
     <div class="card">
-      <h2>🔄 Update Scores (Admin / Office)</h2>
-      <select id="player-select" style="padding:10px; margin-right:10px; width:380px;"></select>
-      <input type="number" id="points" placeholder="Points to add" style="padding:10px; width:120px;">
+      <h2>🔄 Update Scores</h2>
+      <select id="player-select" style="padding:10px; margin-right:10px; width:420px;"></select>
+      <input type="number" id="points" placeholder="Points to add" style="padding:10px; width:130px;">
       <button onclick="addPoints()">Add Points</button>
       <button onclick="resetPool()" style="background:#f44336; margin-left:10px;">Reset All</button>
     </div>
@@ -82,30 +79,34 @@
 
   <script>
     const assignments = [
-      { id: 1, player: "Player 1", team1: "🇫🇷 France", team2: "🇳🇿 New Zealand" },
-      { id: 2, player: "Player 2", team1: "🇪🇸 Spain", team2: "🇭🇹 Haiti" },
-      { id: 3, player: "Player 3", team1: "🇦🇷 Argentina", team2: "🇨🇼 Curaçao" },
-      { id: 4, player: "Player 4", team1: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England", team2: "🇯🇴 Jordan" },
-      { id: 5, player: "Player 5", team1: "🇵🇹 Portugal", team2: "🇨🇻 Cape Verde" },
-      { id: 6, player: "Player 6", team1: "🇧🇷 Brazil", team2: "🇬🇭 Ghana" },
-      { id: 7, player: "Player 7", team1: "🇳🇱 Netherlands", team2: "🇿🇦 South Africa" },
-      { id: 8, player: "Player 8", team1: "🇲🇦 Morocco", team2: "🇺🇿 Uzbekistan" },
-      { id: 9, player: "Player 9", team1: "🇧🇪 Belgium", team2: "🇸🇦 Saudi Arabia" },
-      { id: 10, player: "Player 10", team1: "🇩🇪 Germany", team2: "🇶🇦 Qatar" },
-      { id: 11, player: "Player 11", team1: "🇭🇷 Croatia", team2: "🇵🇦 Panama" },
-      { id: 12, player: "Player 12", team1: "🇨🇴 Colombia", team2: "🇩🇿 Algeria" },
-      { id: 13, player: "Player 13", team1: "🇸🇳 Senegal", team2: "🇪🇬 Egypt" },
-      { id: 14, player: "Player 14", team1: "🇲🇽 Mexico", team2: "🇨🇮 Ivory Coast" },
-      { id: 15, player: "Player 15", team1: "🇺🇸 USA", team2: "🇨🇩 DR Congo" },
-      { id: 16, player: "Player 16", team1: "🇺🇾 Uruguay", team2: "🇳🇴 Norway" },
-      { id: 17, player: "Player 17", team1: "🇯🇵 Japan", team2: "🇦🇹 Austria" },
-      { id: 18, player: "Player 18", team1: "🇨🇭 Switzerland", team2: "🇰🇷 South Korea" },
-      { id: 19, player: "Player 19", team1: "🇩🇰 Denmark", team2: "🇪🇨 Ecuador" },
-      { id: 20, player: "Player 20", team1: "🇮🇷 Iran", team2: "🇦🇺 Australia" },
-      { id: 21, player: "Player 21", team1: "🇹🇷 Turkey", team2: "🇵🇾 Paraguay" },
-      { id: 22, player: "Player 22", team1: "🇸🇪 Sweden", team2: "🇧🇦 Bosnia and Herzegovina" },
-      { id: 23, player: "Player 23", team1: "🇨🇿 Czechia", team2: "🏴󠁧󠁢󠁳🇨🇹 Scotland" },
-      { id: 24, player: "Player 24", team1: "🇨🇦 Canada", team2: "🇹🇳 Tunisia" }
+      { id: 1, player: "Ryan M", teams: "Belgium" },
+      { id: 2, player: "Chris M", teams: "Paraguay & Canada" },
+      { id: 3, player: "Jazzmin P", teams: "Scotland & Algeria" },
+      { id: 4, player: "Alison M", teams: "Colombia & Haiti" },
+      { id: 5, player: "Sean M", teams: "Morocco" },
+      { id: 6, player: "Andrew L", teams: "South Korea & DR Congo" },
+      { id: 7, player: "Sam W", teams: "USA & Cape Verde" },
+      { id: 8, player: "Justin K", teams: "Portugal" },
+      { id: 9, player: "Ivy D", teams: "Netherlands" },
+      { id: 10, player: "Greg P", teams: "Ecuador & Qatar" },
+      { id: 11, player: "Michael C", teams: "Switzerland & Saudi Arabia" },
+      { id: 12, player: "Tyler B", teams: "Egypt & Czechia" },
+      { id: 13, player: "Ryan L", teams: "Austria & Uzbekistan" },
+      { id: 14, player: "Jake B", teams: "Brazil" },
+      { id: 15, player: "Kyle K", teams: "Uruguay & Bosnia and Herzegovina" },
+      { id: 16, player: "Gloria B", teams: "Senegal & Curacao" },
+      { id: 17, player: "Ryan A", teams: "Mexico & Ghana" },
+      { id: 18, player: "Tony V", teams: "Spain" },
+      { id: 19, player: "Cole V", teams: "Australia & Tunisia" },
+      { id: 20, player: "George L", teams: "Panama & Ivory Coast" },
+      { id: 21, player: "Adam Z", teams: "Turkey & Iraq" },
+      { id: 22, player: "Stacy M", teams: "Germany" },
+      { id: 23, player: "Michael R", teams: "Norway & Sweden" },
+      { id: 24, player: "Ana O", teams: "Argentina" },
+      { id: 25, player: "Daniel L", teams: "France" },
+      { id: 26, player: "Ivan S", teams: "England" },
+      { id: 27, player: "JG", teams: "Iran & South Africa" },
+      { id: 28, player: "Sam F", teams: "Croatia & New Zealand" }
     ];
 
     let scores = {};
@@ -140,7 +141,7 @@
         row.innerHTML = `
           <td><strong>${i+1}</strong></td>
           <td>${item.player}</td>
-          <td>${item.team1} + ${item.team2}</td>
+          <td>${item.teams}</td>
           <td><strong>${item.points}</strong></td>
         `;
         tbody.appendChild(row);
@@ -152,27 +153,27 @@
       tbody.innerHTML = '';
       assignments.forEach(a => {
         const row = document.createElement('tr');
-        row.innerHTML = `<td>${a.player}</td><td>${a.team1}</td><td>${a.team2}</td>`;
+        row.innerHTML = `<td>${a.player}</td><td>${a.teams}</td>`;
         tbody.appendChild(row);
       });
     }
 
     function renderPlayerSelect() {
       const select = document.getElementById('player-select');
-      select.innerHTML = '<option value="">Select Player</option>';
+      select.innerHTML = '<option value="">Select Participant</option>';
       assignments.forEach(a => {
         const opt = document.createElement('option');
         opt.value = a.id;
-        opt.textContent = `${a.player} — ${a.team1} + ${a.team2}`;
+        opt.textContent = `${a.player} — ${a.teams}`;
         select.appendChild(opt);
       });
     }
 
     window.addPoints = function() {
       const id = parseInt(document.getElementById('player-select').value);
-      let pts = parseInt(document.getElementById('points').value);
+      const pts = parseInt(document.getElementById('points').value);
       if (!id || isNaN(pts)) {
-        alert("Please select a player and enter points");
+        alert("Please select a participant and enter points");
         return;
       }
       if (!scores[id]) scores[id] = { points: 0 };
@@ -183,14 +184,13 @@
     };
 
     window.resetPool = function() {
-      if (confirm("Reset all scores? This cannot be undone.")) {
+      if (confirm("Reset all scores?")) {
         scores = {};
         saveData();
         renderAll();
       }
     };
 
-    // Initialize
     loadData();
   </script>
 </body>
