@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚽ 2026 BC World Cup Office Pool</title>
+  <title>⚽ 2026 World Cup Office Pool</title>
   <style>
     body { font-family: 'Segoe UI', sans-serif; margin: 0; background: linear-gradient(135deg, #0f4c3a, #1a3c2e); color: white; }
     header { background: #0a2f24; padding: 20px; text-align: center; }
@@ -81,7 +81,7 @@
     const assignments = [
       { id: 1, player: "Ryan M", teams: "🇧🇪 Belgium" },
       { id: 2, player: "Chris M", teams: "🇵🇾 Paraguay & 🇨🇦 Canada" },
-      { id: 3, player: "Jazmin P", teams: " Scotland & 🇩🇿 Algeria" },
+      { id: 3, player: "Jazmin P", teams: "🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland & 🇩🇿 Algeria" },
       { id: 4, player: "Alison M", teams: "🇨🇴 Colombia & 🇭🇹 Haiti" },
       { id: 5, player: "Sean M", teams: "🇲🇦 Morocco" },
       { id: 6, player: "Andrew L", teams: "🇰🇷 South Korea & 🇨🇩 DR Congo" },
@@ -105,94 +105,4 @@
       { id: 24, player: "Michael R", teams: "🇳🇴 Norway & 🇸🇪 Sweden" },
       { id: 25, player: "Ana O", teams: "🇦🇷 Argentina" },
       { id: 26, player: "Daniel L", teams: "🇫🇷 France" },
-      { id: 27, player: "Ivan S", teams: "🏴󠁧󠁢󠁥󠁮󠁧󠁿 England" },
-      { id: 28, player: "JG", teams: "🇮🇷 Iran & 🇿🇦 South Africa" },
-      { id: 29, player: "Sam F", teams: "🇭🇷 Croatia & 🇳🇿 New Zealand" }
-    ];
-
-    let scores = {};
-
-    function loadData() {
-      const saved = localStorage.getItem('worldCupPool2026');
-      if (saved) scores = JSON.parse(saved);
-      else assignments.forEach(a => scores[a.id] = { points: 0 });
-      renderAll();
-    }
-
-    function saveData() {
-      localStorage.setItem('worldCupPool2026', JSON.stringify(scores));
-    }
-
-    function renderAll() {
-      renderLeaderboard();
-      renderAssignments();
-      renderPlayerSelect();
-    }
-
-    function renderLeaderboard() {
-      const tbody = document.getElementById('leaderboard-body');
-      tbody.innerHTML = '';
-      const sorted = assignments.map(a => ({
-        ...a,
-        points: scores[a.id]?.points || 0
-      })).sort((a, b) => b.points - a.points);
-
-      sorted.forEach((item, i) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td><strong>${i+1}</strong></td>
-          <td>${item.player}</td>
-          <td>${item.teams}</td>
-          <td><strong>${item.points}</strong></td>
-        `;
-        tbody.appendChild(row);
-      });
-    }
-
-    function renderAssignments() {
-      const tbody = document.getElementById('assignments-body');
-      tbody.innerHTML = '';
-      assignments.forEach(a => {
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${a.player}</td><td>${a.teams}</td>`;
-        tbody.appendChild(row);
-      });
-    }
-
-    function renderPlayerSelect() {
-      const select = document.getElementById('player-select');
-      select.innerHTML = '<option value="">Select Participant</option>';
-      assignments.forEach(a => {
-        const opt = document.createElement('option');
-        opt.value = a.id;
-        opt.textContent = `${a.player} — ${a.teams}`;
-        select.appendChild(opt);
-      });
-    }
-
-    window.addPoints = function() {
-      const id = parseInt(document.getElementById('player-select').value);
-      const pts = parseInt(document.getElementById('points').value);
-      if (!id || isNaN(pts)) {
-        alert("Please select a participant and enter points");
-        return;
-      }
-      if (!scores[id]) scores[id] = { points: 0 };
-      scores[id].points += pts;
-      saveData();
-      renderAll();
-      alert(`Added ${pts} points to ${assignments.find(a => a.id === id).player}!`);
-    };
-
-    window.resetPool = function() {
-      if (confirm("Reset all scores?")) {
-        scores = {};
-        saveData();
-        renderAll();
-      }
-    };
-
-    loadData();
-  </script>
-</body>
-</html>
+      { id: 27, player: "Ivan S", teams: "🏴󠁧󠁢󠁥
